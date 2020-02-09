@@ -29,7 +29,7 @@ class Wallet(models.Model):
     def rm_card(self, card):
         # Remove a card from the wallet (and from the database), reset userLimit if greater than new max_limit
         card.delete()
-        if self.userLimit > self.get_max_limit():
+        if self.userLimit and self.userLimit > self.get_max_limit():
             self.userLimit = None
             self.save()
 
